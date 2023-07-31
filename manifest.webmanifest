@@ -4,8 +4,8 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Spinning Circle",
-  "short_name": "Spinning Circle",
+  "name": "Spinning Circles",
+  "short_name": "Spinning Circles",
   "icons": [
     {
       "src": "/resources/icon-192x192.png",
