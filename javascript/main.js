@@ -39,6 +39,13 @@ const addEventListeners = (animation) => {
       animation.setupCenters(centers);
     }
   );
+
+  window.colorSchemeChangeEventSubscription = window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", function (e) {
+      const colorScheme = e.matches ? "dark" : "light";
+      animation.updateColorScheme(colorScheme);
+    });
 };
 
 const removeEventListeners = () => {
@@ -57,6 +64,10 @@ const removeEventListeners = () => {
   if (window.touchEndEventSubscription) {
     window.removeEventListener(window.touchEndEventSubscription);
   }
+
+  if (window.colorSchemeChangeEventSubscription) {
+    window.removeEventListener(window.colorSchemeChangeEventSubscription);
+  }
 };
 
 export const main = () => {
@@ -70,12 +81,15 @@ export const main = () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
+  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
   const context = canvas.getContext("2d");
 
   const animation = new Animation(
     context,
     window.innerWidth,
-    window.innerHeight
+    window.innerHeight,
+    isDarkMode ? "dark" : "light"
   );
 
   addEventListeners(animation);
