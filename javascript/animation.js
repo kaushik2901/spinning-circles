@@ -15,19 +15,25 @@ export default class Animation {
   /** @type {Circle[]} */
   #circles;
 
-  /** @type {string} */
-  #backgroundColor = "rgba(0, 0, 0, 0.08)";
-
   /** @type {Point[]} */
   #centerCollection;
 
   /** @type {Map<number, number>} */
   #circleToCenterMap = new Map();
 
-  constructor(context, frameWidth, frameHeight) {
+  /** @type {string} */
+  #currentColorScheme = "dark";
+
+  #colorSchemes = {
+    light: "rgba(255, 255, 255, 0.08)",
+    dark: "rgba(0, 0, 0, 0.08)",
+  };
+
+  constructor(context, frameWidth, frameHeight, colorScheme) {
     this.#context = context;
     this.#frameWidth = frameWidth;
     this.#frameHeight = frameHeight;
+    this.#currentColorScheme = colorScheme;
     this.#centerCollection = [new Point(frameWidth / 2, frameHeight / 2)];
 
     this.#circles = Array.from({ length: 50 }).map(
@@ -46,7 +52,7 @@ export default class Animation {
   }
 
   animate() {
-    this.#context.fillStyle = this.#backgroundColor;
+    this.#context.fillStyle = this.#colorSchemes[this.#currentColorScheme];
     this.#context.fillRect(0, 0, this.#frameWidth, this.#frameHeight);
     this.#circles.forEach((circle) => {
       circle.draw();
@@ -75,5 +81,9 @@ export default class Animation {
       const centerIndex = this.#circleToCenterMap.get(index);
       circle.updateCenter(this.#centerCollection[centerIndex]);
     });
+  }
+
+  updateColorScheme(colorScheme) {
+    this.#currentColorScheme = colorScheme;
   }
 }
