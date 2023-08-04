@@ -2,8 +2,8 @@
   "theme_color": "#000000",
   "background_color": "#000000",
   "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
+  "scope": "https://kaushik2901.github.io/spinning-circles/",
+  "start_url": "https://kaushik2901.github.io/spinning-circles/",
   "name": "Spinning Circles",
   "short_name": "Spinning Circles",
   "icons": [
