@@ -5,7 +5,7 @@ Visit [https://kaushik2901.github.io/spinning-circles/](https://kaushik2901.gith
 
 ### Features
 
-- Multi touch supported
+- Multi-touch supported
 - Responsive
 - Light / Dark theme based on system preference
 - PWA Support
